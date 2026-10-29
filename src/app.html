@@ -10,6 +10,10 @@
 <meta property="og:url" content="__URL__">
 <meta property="og:image" content="__URL__og.png">
 <meta name="theme-color" content="#0d1017">
+<link rel="icon" href="../icon-32.png" sizes="32x32">
+<link rel="icon" href="../icon-512.png" sizes="512x512">
+<link rel="apple-touch-icon" href="../icon-180.png">
+<link rel="canonical" href="__URL__">
 <style>
 :root{--bg:rgba(12,14,22,.74);--line:rgba(255,255,255,.1);--fg:#f3f1ea;--mute:#a9a79f;--acc:#ff5a36;--acc2:#ffd166}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -68,7 +72,7 @@ html,body{margin:0;height:100%;overflow:hidden;background:#0d1017;color:var(--fg
 <div id="app">
 <canvas id="c" aria-label="3D 캠퍼스"></canvas>
 <div id="load"><b>SMASH <i>__TITLE__</i></b><div class="sp"></div><p>__DESC__</p></div>
-<div class="panel" id="title"><b id="ttl">__TITLE__</b><small id="sub"></small><span class="hint">건물을 누르면 부서져요 · 끌어서 돌리기</span></div>
+<div class="panel" id="title"><b id="ttl">__TITLE__</b><small id="sub"></small><a id="hub" href="__HUB__" style="display:none;color:var(--acc2);font-size:12px;text-decoration:none;margin-top:3px">다른 학교 →</a><span class="hint">건물을 누르면 부서져요 · 끌어서 돌리기</span></div>
 <div class="panel" id="score"><div class="pts" id="pts">0</div><div class="rank"><span id="mult" style="color:var(--mute);font-size:12px">×1.0</span><b id="rank">D</b></div><div class="bar"><i id="bar"></i></div><small id="best"></small></div>
 <div class="panel" id="tools">
  <div class="row" id="toolrow">
@@ -875,6 +879,7 @@ controls.target.set(cx, groundY(cx, cz) + 10, cz); camera.position.set(cx + span
 sun.target.position.set(cx, 0, cz);
 function resize() { renderer.setSize(innerWidth, innerHeight, false); camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); const sc = innerHeight * dpr / (2 * Math.tan(camera.fov * Math.PI / 360)); smoke.mat.uniforms.uScale.value = sc; fire.mat.uniforms.uScale.value = sc; wake(.3); }
 addEventListener('resize', resize); resize();
+if (CFG.hub) $('#hub').style.display = 'inline';
 setTool('bomb'); $('#sub').textContent = (CFG.campusName || '') + (CFG.neighbors ? ' · 옆: ' + CFG.neighbors : ''); initial = snapshot(); hist.length = 0;
 let last = performance.now() / 1000, lastRender = 0;
 function tick(dt) {   // 시뮬레이션 한 걸음. 그리기는 frame() 에서

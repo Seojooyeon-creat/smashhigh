@@ -1,6 +1,6 @@
-# SMASH 남대전고
+# SMASH 고등학교
 
-대전 남대전고등학교 캠퍼스를 3D로 부수는 브라우저 게임입니다. 학교와 관계없는 비공식 팬 게임이고, 학교 로고나 교표는 쓰지 않습니다.
+고등학교 캠퍼스를 3D로 부수는 브라우저 게임 모음입니다. 허브: https://seojooyeon-creat.github.io/smashhigh/ · 첫 학교는 남대전고(`/ndj/`)입니다. 학교와 관계없는 비공식 팬 게임이고, 학교 로고나 교표는 쓰지 않습니다.
 
 [SMASH 대학교](https://hong-iron.github.io/SMASH/)의 원리(OpenStreetMap 건물 윤곽 + 층수 → 3D 박스 → 조각내기)를 보고 처음부터 새로 만든 고등학교 버전입니다. 원작 코드는 쓰지 않았습니다.
 
@@ -27,10 +27,12 @@
 - three.js r160 (CDN), 소리는 Web Audio 합성. 의존성 설치 없음.
 - 데이터: `tools/fetch.py` 가 Overpass 로 학교 경계 안팎의 건물·도로·녹지와 AWS Terrain Tiles 고도를 받고, `tools/build_campus.py` 가 미터 좌표의 `data/campus.json` 으로 바꿉니다.
   ```
-  python3 tools/fetch.py way 30658725 raw 120          # 남대전고 OSM way, 주변 120 m
-  python3 tools/build_campus.py raw data/campus.json config.json
-  python3 tools/assemble.py                           # src/app.html + data + config → site/index.html
+  python3 tools/fetch.py way 30658725 raw 120                         # 남대전고 OSM way, 주변 120 m
+  python3 tools/build_campus.py raw schools/ndj/campus.json schools/ndj/config.json
+  python3 tools/assemble.py ndj                                      # src/app.html + schools/ndj → site/ndj/index.html
+  python3 tools/build_hub.py                                         # schools.json + src/hub.html → site/index.html
   ```
+- 학교 추가: `schools/<code>/config.json` 과 `campus.json`, `og.png` 을 만들고 `schools.json` 에 한 줄 넣은 뒤 위 두 빌드를 돌립니다.
   `build_campus.py` 는 numpy, matplotlib 이 필요합니다.
 - 층수는 OSM 에 없으면 넓이로 어림합니다. `config.json` 의 `levels` 에 `"way/ID": 층수` 로 덮어쓰고, `names` 로 건물 이름을 붙입니다. `look` 으로 건물별 벽·유리·지붕 색과 양식(stone/brick/glass/dorm)을 정할 수 있습니다.
 - 건물은 OBB 격자로 잘라 InstancedMesh 하나로 그립니다. 물리는 직접 짠 간단한 것(중력, 땅·건물 위 착지, 지지 없는 칸 붕괴)입니다.
@@ -48,4 +50,3 @@
 - 학교 랭킹 서버(원작은 Supabase). 지금은 기기 안 최고 점수만 저장합니다.
 - 카카오톡 공유 SDK.
 - 브이월드 건물통합정보로 층수·지붕색 보강 (`VWORLD_KEY` 필요).
-- 여러 학교를 모으는 허브 페이지.

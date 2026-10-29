@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SMASH 고등학교 — 우리 학교 부수기 게임</title>
+<meta name="description" content="전국 고등학교 캠퍼스를 3D로 부수는 무료 브라우저 게임 모음. 폭탄, 배트, 레이저, 운석, 지진, 핵폭탄으로 시험기간 스트레스를 날려요.">
+<link rel="canonical" href="__URL__">
+<meta property="og:title" content="SMASH 고등학교 — 우리 학교를 부숴 봐">
+<meta property="og:description" content="우리 학교 캠퍼스를 3D로 부수는 무료 브라우저 게임">
+<meta property="og:url" content="__URL__">
+<meta property="og:image" content="__OG__">
+<meta property="og:site_name" content="SMASH 고등학교">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0d1017">
+<link rel="icon" href="icon-32.png" sizes="32x32">
+<link rel="icon" href="icon-512.png" sizes="512x512">
+<link rel="apple-touch-icon" href="icon-180.png">
+<!--JSONLD-->
+<style>
+:root{--bg:#0d1017;--card:#151924;--line:rgba(255,255,255,.09);--fg:#f3f1ea;--mute:#a09e97;--acc:#ff5a36;--acc2:#ffd166}
+*{box-sizing:border-box}
+html{color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR",system-ui,sans-serif}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header{padding:56px 0 28px;text-align:center;background:radial-gradient(ellipse at 50% -20%,rgba(255,90,54,.28),transparent 60%)}
+header h1{font-size:clamp(34px,7vw,60px);margin:0;letter-spacing:-.04em;line-height:1.05}
+header h1 i{font-style:normal;color:var(--acc)}
+header p.tag{font-size:clamp(18px,3.4vw,24px);margin:10px 0 0;color:var(--fg);font-weight:700}
+header p.sub{color:var(--mute);margin:8px 0 0;font-size:14px}
+.search{margin:26px auto 0;max-width:460px;position:relative}
+.search input{width:100%;padding:13px 16px 13px 44px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--fg);font-size:16px;outline:none}
+.search input:focus{border-color:var(--acc)}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:20px;height:20px;opacity:.5}
+.sec{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:30px 0 12px}
+.sec h2{font-size:16px;margin:0;color:var(--mute);font-weight:600}
+.sec span{font-size:13px;color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;text-decoration:none;transition:transform .15s,border-color .15s}
+.card:hover{transform:translateY(-3px);border-color:rgba(255,90,54,.6)}
+.card img{width:100%;height:auto;aspect-ratio:1200/630;object-fit:cover;display:block;background:#222}
+.card .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:2px}
+.card .code{font-size:11px;color:var(--acc);font-weight:800;letter-spacing:.04em}
+.card .name{font-size:17px;font-weight:800;letter-spacing:-.02em}
+.card .region{font-size:13px;color:var(--mute)}
+.card .go{margin-top:8px;font-size:13px;color:var(--acc2);font-weight:700}
+.card.hide{display:none}
+.empty{display:none;color:var(--mute);padding:30px 0;text-align:center}
+.empty.on{display:block}
+.ask{margin:36px 0 0;padding:22px;border:1px dashed var(--line);border-radius:16px;text-align:center}
+.ask b{display:block;font-size:17px;margin-bottom:4px}
+.ask p{margin:0;color:var(--mute);font-size:14px}
+.ask a{display:inline-block;margin-top:12px;padding:10px 18px;border-radius:12px;background:var(--acc);color:#fff;text-decoration:none;font-weight:700;font-size:14px}
+footer{margin:48px 0 40px;color:var(--mute);font-size:12px;line-height:1.7}
+footer a{color:var(--mute)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>SMASH <i>고등학교</i></h1>
+<p class="tag">우리 학교를 부숴 봐</p>
+<p class="sub">고등학교 캠퍼스를 3D로 부수는 무료 브라우저 게임 · 설치 없음 · 휴대폰 OK · 학교와 관계없는 비공식 팬 게임</p>
+<div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="학교 이름이나 지역으로 찾기" autocomplete="off" aria-label="학교 찾기"></div>
+</div></header>
+<main class="wrap">
+<div class="sec"><h2>학교 목록</h2><span><b id="count">__COUNT__</b>개 학교</span></div>
+<div class="grid" id="grid">__CARDS__</div>
+<p class="empty" id="empty">아직 없는 학교예요. 아래에서 요청해 주세요.</p>
+<div class="ask"><b>우리 학교가 없어요?</b><p>학교 이름과 주소를 알려주시면 추가합니다. OpenStreetMap에 건물이 그려져 있는 학교가 빨리 됩니다.</p><a href="__ISSUES__" target="_blank" rel="noopener">학교 추가 요청하기</a></div>
+</main>
+<footer class="wrap">
+학교와 관계없는 비공식 팬 게임입니다. 학교 로고와 교표는 쓰지 않습니다.<br>
+건물·도로 자료 © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap 기여자</a> (ODbL) · 땅 높이 AWS Terrain Tiles (SRTM 30 m)<br>
+<a href="https://hong-iron.github.io/SMASH/" target="_blank" rel="noopener">SMASH 대학교</a>의 원리를 보고 처음부터 새로 만들었습니다. 소스: <a href="__REPO__" target="_blank" rel="noopener">GitHub</a>
+</footer>
+<script>
+const q = document.getElementById('q'), cards = [...document.querySelectorAll('.card')], empty = document.getElementById('empty'), count = document.getElementById('count');
+q.addEventListener('input', () => {
+  const s = q.value.trim().toLowerCase(); let n = 0;
+  for (const c of cards) { const on = !s || c.dataset.key.includes(s); c.classList.toggle('hide', !on); n += on; }
+  empty.classList.toggle('on', !n); count.textContent = n;
+});
+</script>
+</body>
+</html>
