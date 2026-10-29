@@ -1,0 +1,23 @@
+{
+  "code": "NDJ",
+  "title": "SMASH 남대전고",
+  "school": "남대전고",
+  "fullName": "남대전고등학교",
+  "campusName": "남대전고등학교",
+  "tagline": "남대전고를 부숴 (시험기간 스트레스 해소)",
+  "description": "대전 남대전고등학교를 3D로 부수고 지구 중심까지 파 내려가는 스트레스 해소 게임",
+  "url": "https://seojooyeon-creat.github.io/smashhigh/",
+  "hub": "",
+  "osm": { "type": "way", "id": 30658725 },
+  "levels": {},
+  "names": {
+    "way/765570732": "본관",
+    "way/765570730": "별관",
+    "way/765570729": "후관",
+    "way/765570728": "체육관",
+    "way/765570733": "급식실",
+    "way/765570731": "창고"
+  },
+  "neighbors": "청란여자중학교·청란여자고등학교",
+  "look": {}
+}
